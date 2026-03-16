@@ -1,3 +1,217 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeBeatzGH | Media Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+        :root {
+            --yt-red: #FF0000;
+            --glass-bg: rgba(15, 15, 15, 0.7);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Gradient Background */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 100vw; height: 100vh;
+            background: radial-gradient(circle at 50% -20%, #2a0a0a 0%, #0a0a0a 70%);
+            z-index: -1;
+        }
+
+        /* --- NAV TABS --- */
+        .nav-container {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tab-link {
+            position: relative;
+            padding: 1.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .tab-link.active { color: #fff; }
+        .tab-link.active::after {
+            content: '';
+            position: absolute; bottom: -1px; left: 0;
+            width: 100%; height: 2px;
+            background: var(--yt-red);
+            box-shadow: 0 0 10px var(--yt-red);
+        }
+
+        /* --- VIDEO CARDS --- */
+        .video-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .iframe-container iframe {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        /* --- CHANNEL HEADER --- */
+        .channel-header {
+            padding: 80px 20px 40px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--yt-red);
+            margin: 0 auto 20px;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+        }
+
+        .sub-btn {
+            background: #fff;
+            color: #000;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        .sub-btn:hover { background: var(--yt-red); color: #fff; transform: scale(1.05); }
+
+        .content-section { display: none; animation: fadeInUp 0.6s ease forwards; }
+        .content-section.active { display: block; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <header class="channel-header">
+        <div class="avatar flex items-center justify-center bg-[#111]">
+            <i class="fab fa-youtube text-4xl text-red-600"></i>
+        </div>
+        <h1 class="text-3xl font-extrabold tracking-tighter mb-2">DeBeatzGH</h1>
+        <p class="text-gray-400 text-sm mb-6">Digital Content Strategist & Tech Enthusiast</p>
+        <div class="flex justify-center gap-4">
+            <a href="https://youtube.com/@debeatzgh?sub_confirmation=1" target="_blank" class="sub-btn">SUBSCRIBE</a>
+            <a href="https://youtube.com/@debeatzgh/community" target="_blank" class="px-6 py-2 rounded-full border border-white/10 text-xs font-bold hover:bg-white/5 transition">VIEW COMMUNITY</a>
+        </div>
+    </header>
+
+    <nav class="nav-container">
+        <div class="max-w-4xl mx-auto flex justify-around">
+            <div class="tab-link active" onclick="switchTab('videos', this)">Videos</div>
+            <div class="tab-link" onclick="switchTab('playlist', this)">Playlist</div>
+            <div class="tab-link" onclick="switchTab('community', this)">Community</div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto p-6">
+        
+        <section id="videos" class="content-section active">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="video-card">
+                    <div class="iframe-container">
+                        <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=debeatzgh" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-sm mb-1">Latest Uploads</h3>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest">Main Channel Feed</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="playlist" class="content-section">
+            <div class="video-card w-full max-w-4xl mx-auto">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=PLMOQxjh_hNfRbNjMEMpG_wBsf4NODJGEG" allowfullscreen></iframe>
+                </div>
+                <div class="p-6 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-bold">Featured Playlist</h2>
+                        <p class="text-sm text-gray-400">Curated tech & creative series</p>
+                    </div>
+                    <a href="https://youtube.com/playlist?list=PLMOQxjh_hNfRbNjMEMpG_wBsf4NODJGEG" target="_blank" class="text-red-500 text-xs font-bold hover:underline">OPEN IN YOUTUBE</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="content-section">
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div class="p-8 border border-dashed border-white/20 rounded-3xl text-center">
+                    <i class="fas fa-users text-4xl text-gray-700 mb-4"></i>
+                    <h3 class="text-lg font-bold mb-2">YouTube Community Feed</h3>
+                    <p class="text-sm text-gray-500 mb-6">Direct posts, polls, and updates from DeBeatzGH are hosted on YouTube's community tab.</p>
+                    <a href="https://youtube.com/@debeatzgh/community" target="_blank" class="inline-block bg-white/5 border border-white/10 px-8 py-3 rounded-full text-xs font-bold hover:bg-white/10 transition">
+                        GO TO COMMUNITY POSTS
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        function switchTab(tabId, el) {
+            // Update Tab Links
+            document.querySelectorAll('.tab-link').forEach(tab => tab.classList.remove('active'));
+            el.classList.add('active');
+
+            // Update Content Sections
+            document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+
+            // Scroll to top of content
+            window.scrollTo({ top: document.querySelector('nav').offsetTop - 20, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
+
+
+
 <iframe src="https://msha.ke/debeatzgh#entertainments-hub" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
 
 
