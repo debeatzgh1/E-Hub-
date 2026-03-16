@@ -28,7 +28,7 @@
         #playlist-launcher {
             position: fixed;
             left: 20px;
-            top: 80%;
+            top: 90%;
             transform: translateY(-50%);
             width: 50px;
             height: 50px;
