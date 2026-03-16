@@ -28,7 +28,7 @@
         #playlist-launcher {
             position: fixed;
             left: 20px;
-            top: 10%;
+            top: 80%;
             transform: translateY(-50%);
             width: 50px;
             height: 50px;
@@ -260,7 +260,7 @@
 .yt-float-btn {
   position: fixed;
   right: 14px;
-  top: 20%;
+  top: 90%;
   transform: translateY(-50%);
   background: #ff0000;
   color: #fff;
